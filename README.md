@@ -5,6 +5,10 @@ Module 17 - Supervised Machine Learning
 
 Overview of the analysis: Explain the purpose of this analysis.
 
+Credit risk is an inherently unbalanced classification problem, as good loans easily outnumber risky loans. Therefore, you’ll need to employ different techniques to train and evaluate models with unbalanced classes. Jill asks you to use imbalanced-learn and scikit-learn libraries to build and evaluate models using resampling.
+
+Using the credit card credit dataset from LendingClub, a peer-to-peer lending services company, you’ll oversample the data using the RandomOverSampler and SMOTE algorithms, and undersample the data using the ClusterCentroids algorithm. Then, you’ll use a combinatorial approach of over- and undersampling using the SMOTEENN algorithm. Next, you’ll compare two new machine learning models that reduce bias, BalancedRandomForestClassifier and EasyEnsembleClassifier, to predict credit risk. Once you’re done, you’ll evaluate the performance of these models and make a written recommendation on whether they should be used to predict credit risk.
+
 
 #### Deliverable 1
 RandomOverSampler, SMOTE and ClusterCentroids analysis:
@@ -54,6 +58,15 @@ EasyEnsembleClassifier:
 
 
 ## Results
+
+
+
+<p align="center">
+<kbd>
+  <img src="https://github.com/GabrielaTuma/bikesharing/blob/7fed2962046b921c5f47bb515c9639a26fd7b630/Images%20/Trips%20by%20Weekday%20per%20Hour.png">
+</kbd>  &nbsp;
+</p>
+
 
 
 Results: Using bulleted lists, describe the balanced accuracy scores and the precision and recall scores of all six machine learning models. Use screenshots of your outputs to support your results.
