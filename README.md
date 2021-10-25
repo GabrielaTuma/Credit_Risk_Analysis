@@ -7,7 +7,9 @@ Credit risk is an inherently unbalanced classification problem, as good loans ea
 
 Using the credit card credit dataset from LendingClub, a peer-to-peer lending services company, this project is about employing different machine learning techniques to train and evaluate models with unbalanced classes.
 
-- The data will be oversampled using the **RandomOverSampler** and **SMOTE** algorithms, and undersampled using the **ClusterCentroids** algorithm. Then, a combinatorial approach of over and undersampling using the **SMOTEENN** algorithm will be applied.
+- The data will be oversampled using the **RandomOverSampler** and **SMOTE** algorithms, and undersampled using the **ClusterCentroids** algorithm. 
+
+- Then, a combinatorial approach of over and undersampling using the **SMOTEENN** algorithm will be applied.
 
 - Next, two new machine learning models that reduce bias, **BalancedRandomForestClassifier** and **EasyEnsembleClassifier**, will be applied in the same dataset.
 
@@ -56,7 +58,7 @@ EasyEnsembleClassifier:
 - [x] 7. There is a recommendation on which model to use, or there is no recommendation with a justification
 
 
-## Outcomes
+## Resources
 
 - Software: Python 3.7.6, Visual Studio Code 1.58.1, Jupyter Notebook 6.3.0
 
@@ -71,7 +73,7 @@ Before looking at the results it's important to understand 3 concepts:
 
 - F1 score: F1 score is a weighted average of the true positive rate (recall) and precision, where the best score is 1.0 and the worst is 0.0.
 
-Our analysis is related to credit risk, in this case, positive values are high risk loans and **precision** will tell us the relationship between **correctly predicted high risk** loans and the **total amount of high risk predictions.** The **recall** score, in the other hand, uses correctly and **incorrectly** predicted high risk loans to be calculated.  
+This analysis is related to credit risk, in this case, positive values are high risk loans and **precision** will calculate the relationship between **correctly predicted high risk** loans and the **total amount of high risk predictions.** The **recall** score, on the other hand, takes correctly and **incorrectly** predicted high risk loans values to be calculated.  
 
 
 ### Resampling
@@ -105,14 +107,19 @@ SMOTEENN:
 </p>
 
 
-Oversampling and Undersamplig methods show similar performances, precision scores are around 0.7 and recall scores are around 0.01. We can see a slight improvement when the SMOTEENN method is applied combining both sampling techniques, but not enough to say the model is reliable. 
+Oversampling and Undersamplig methods show similar performances, precision scores are 0.01 and recall scores are around 0.7. We can see a slight improvement when the SMOTEENN model is applied combining both sampling techniques, but not enough to say the model is reliable. 
 
-The very low precision scores from all methods tell us that a lot of the low risk loans were "accused" by the model of being high risk. The recall scores, all around 0.7, are saying that about 70% of the high risk loans are "caught". 
+- The very low precision scores from all methods tell us that a lot of the low risk loans were "accused" by the model of being high risk. 
+- The recall scores (between 0.63 and 0.78) are saying that around 70% of the high risk loans were correctly "caught". 
 
 Most of the high risk loans will be detected by using RandomOverSampler, SMOTE, ClusterCentroids and SMOTEENN algorithms, but a lot of low risk loans will be incorrectly classified in the process. Therefore, they should not be used to predict credit risk independently. 
 
 
 ### Ensemble
+
+Ensemble learning is the process of combining multiple models, like decision tree algorithms, to help improve the accuracy and robustness, as well as decrease variance, and therefore increase the overall performance of the model. 
+
+BalancedRandomForestClassifier and EasyEnsembleClassifier were employed in the credit card credit dataset from LendingClub as well, as they might be better predictors. 
 
 BalancedRandomForestClassifier:
 <p align="center">
@@ -129,15 +136,14 @@ EasyEnsembleClassifier:
 </kbd>  &nbsp;
 </p>
 
-Ensemble learning is the process of combining multiple models, like decision tree algorithms, to help improve the accuracy and robustness, as well as decrease variance of the model, and therefore increase the overall performance of the model. BalancedRandomForestClassifier and EasyEnsembleClassifier were employed in the analysis as well 
 
-on whether they should be used to predict credit risk.
+The improvement is visible, specially when we look at the EasyEnsembleClassifier's imbalanced classification report. The precision went from 0.01 to 0.09, still not what we are looking for to predict credit risk, but the method seems to be more reliable compared to the ones previously analyzed. The recall score is 0.92, meaning that 92% of high risk loans were detected in the process. The f1 score had a significant increase as well, from around 0.01 to 0.16. 
 
-This methods can be used as a first filter, but it can't be used to determine reliably whether a loan is high or low risk 
+## Summary
 
+The results of the machine learning models indicate that none of them should be used to predict credit risk. The EasyEnsembleClassifier had better results and is the best option among the models analyzed, however, using the method exclusively can be harmful to the company once a lot of low risk loans will be declined for lack of precision of the system. This model can be used as an initial filter, but it can't be used to determine reliably whether a loan is high or low risk. 
 
-
-Summary: Summarize the results of the machine learning models, and include a recommendation on the model to use, if any. If you do not recommend any of the models, justify your reasoning.
+The models might not be enough to predict the credit risk, but we have useful historical data that can present some unveiled information.    
 
 
 <p align="center">
@@ -145,3 +151,5 @@ Summary: Summarize the results of the machine learning models, and include a rec
   <img src="https://github.com/GabrielaTuma/Credit_Risk_Analysis/blob/b71920dcb3594e6c59ea4aa1da88a1e7b898346d/Images/feature_importances_.png">
 </kbd>  &nbsp;
 </p>
+
+One of the outcomes of this analysis is the feature importance table generated with the BalancedRandomForestClassifier results. The table shows which columns have more impact in the loan status and above we can see the top 10 most important features.
