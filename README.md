@@ -119,7 +119,7 @@ Most of the high risk loans will be detected by using RandomOverSampler, SMOTE, 
 
 Ensemble learning is the process of combining multiple models, like decision tree algorithms, to help improve the accuracy and robustness, as well as decrease variance, and therefore increase the overall performance of the model. 
 
-BalancedRandomForestClassifier and EasyEnsembleClassifier were employed in the credit card credit dataset from LendingClub as well, as they might be better predictors. 
+BalancedRandomForestClassifier and EasyEnsembleClassifier were employed in the credit card dataset from LendingClub as well, as they might generate better predictors. 
 
 BalancedRandomForestClassifier:
 <p align="center">
